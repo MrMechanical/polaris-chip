@@ -1,42 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Boilerplate for polaris chip">
-  <base href="/">
-
-  <style>
-    :root,
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #ededed;
-    }
-    polaris-chip {
-      margin: 16px;
-    }
-  </style>
-  <title>polaris-chip / my-card</title>
-</head>
-
-<body>
-  <h1>polaris-chip</h1>
-  <!-- this is going to do whatever the tag's defaults are -->
-  <polaris-chip title="News of Record" link="https://psu.edu/"></polaris-chip>
-  <polaris-chip title="Faculty and Staff"></polaris-chip>
-  <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
-  <polaris-chip title="Grants and donations"></polaris-chip>
-
-  <h1>my-card</h1>
-  <my-card></my-card>
-
-  <!-- this is what is bringing in the definition for this tag -->
-  <script type="module" src="./src/polaris-chip.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Card Demo</title>
   <script type="module" src="./src/my-card.js"></script>
-</body>
+</head>
+<body>
+  <my-card
+    title="Title 1"
+    img="https://picsum.photos/id/1015/400/400"
+    description="Description 1"
+    details-link="https://www.psu.edu/">
+  </my-card>
 
+  <my-card
+    title="Title 2"
+    img="https://picsum.photos/id/1025/400/400"
+    description="description 2"
+    details-link="https://www.psu.edu/">
+  </my-card>
+
+  <my-card
+    title="Title 3"
+    img="https://picsum.photos/id/1035/400/400"
+    description="description 3"
+    details-link="https://www.psu.edu/">
+  </my-card>
+
+  <my-card
+    title="Title 4"
+    img="https://picsum.photos/id/1045/400/400"
+    description="The deep blue ocean stretching to the horizon."
+    details-link="https://www.psu.edu/">
+  </my-card>
+
+  <my-card
+    title="Title 5"
+    img="https://picsum.photos/id/1055/400/400"
+    description="description 5"
+    details-link="https://www.psu.edu/">
+  </my-card>
+</body>
 </html>
