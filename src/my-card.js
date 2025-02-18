@@ -7,11 +7,10 @@ export class MyCard extends LitElement {
 
   constructor() {
     super();
-    // Default values for the properties
     this.title = 'Default Title';
     this.img = 'https://picsum.photos/400/400';
-    this.description = 'Default description text.';
     this.detailsLink = 'https://psu.edu';
+    this.fancy = false; // Default fancy state
   }
 
   static get styles() {
@@ -23,13 +22,15 @@ export class MyCard extends LitElement {
         margin: 20px;
         padding: 10px;
         overflow: hidden;
+        transition: all 0.3s ease;
       }
-      
+
       .card-image {
         width: 100%;
         height: 200px;
+        object-fit: cover;
       }
-      
+
       .details-button {
         background: blue;
         color: white;
@@ -37,15 +38,64 @@ export class MyCard extends LitElement {
         text-decoration: none;
         display: none;
       }
-  
-      /* Show Details button on medium screens */
+
+      /* Fancy styles */
+      :host([fancy]) {
+        display: block; /* Ensure it behaves as a block element */
+      }
+
+      .fancy {
+        background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        border-color: #fff;
+      }
+
+      .fancy .card-image {
+        border-radius: 8px;
+        border: 2px solid #fff;
+      }
+
+      .fancy h2 {
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      }
+
+      .fancy .details-button {
+        background: white;
+        color: #ff6b6b;
+      }
+
+      /* Details styling */
+      details {
+        margin-top: 10px;
+      }
+
+      details summary {
+        text-align: left;
+        font-size: 20px;
+        padding: 8px 0;
+        cursor: pointer;
+      }
+
+      details[open] summary {
+        font-weight: bold;
+      }
+
+      details div {
+        border: 2px solid black;
+        text-align: left;
+        padding: 8px;
+        max-height: 100px; /* Constrain height */
+        overflow: auto; /* Scroll if content overflows */
+      }
+
+      /* Responsive adjustments */
       @media (max-width: 800px) and (min-width: 500px) {
         .details-button {
           display: inline-block;
         }
       }
-  
-      /* Adjust sizes on small screens */
+
       @media (max-width: 500px) {
         .card {
           width: 300px;
@@ -54,30 +104,34 @@ export class MyCard extends LitElement {
           height: 150px;
         }
       }
-  
-      /* This class toggles the background color */
-      .bg-changed {
-        background-color: #008000;
-      }
     `;
   }
 
   static get properties() {
     return {
+      fancy: { type: Boolean, reflect: true },
       title: { type: String },
       img: { type: String },
-      description: { type: String },
-      // Use attribute "details-link" to map to the detailsLink property
       detailsLink: { type: String, attribute: 'details-link' },
     };
   }
 
+  // Event handler for details toggle
+  openChanged(e) {
+    this.fancy = e.target.open; // Sync fancy with details open state
+  }
+
   render() {
     return html`
-      <div class="card">
+      <div class="card ${this.fancy ? 'fancy' : ''}">
         <img src="${this.img}" alt="Image" class="card-image">
         <h2>${this.title}</h2>
-        <p>${this.description}</p>
+        <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+          <summary>Description</summary>
+          <div>
+            <slot></slot> <!-- Slot for flexible HTML content -->
+          </div>
+        </details>
         <a href="${this.detailsLink}" class="details-button">Details</a>
       </div>
     `;

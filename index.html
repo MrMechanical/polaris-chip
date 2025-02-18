@@ -5,41 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Card Demo</title>
   <script type="module" src="./src/my-card.js"></script>
+  <style>
+    body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    my-card[fancy] {
+      --my-card-fancy-bg: #FF0000; /* Example CSS variable */
+    }
+  </style>
 </head>
 <body>
   <my-card
-    title="Title 1"
+    title="Random Wild"
     img="https://picsum.photos/id/1015/400/400"
-    description="Description 1"
     details-link="https://www.psu.edu/">
+    <p>random <strong>awesome</strong> neon</p>
   </my-card>
 
   <my-card
-    title="Title 2"
+    title="Fancy Card"
     img="https://picsum.photos/id/1025/400/400"
-    description="description 2"
-    details-link="https://www.psu.edu/">
-  </my-card>
-
-  <my-card
-    title="Title 3"
-    img="https://picsum.photos/id/1035/400/400"
-    description="description 3"
-    details-link="https://www.psu.edu/">
-  </my-card>
-
-  <my-card
-    title="Title 4"
-    img="https://picsum.photos/id/1045/400/400"
-    description="The deep blue ocean stretching to the horizon."
-    details-link="https://www.psu.edu/">
-  </my-card>
-
-  <my-card
-    title="Title 5"
-    img="https://picsum.photos/id/1055/400/400"
-    description="description 5"
-    details-link="https://www.psu.edu/">
+    details-link="https://www.psu.edu/"
+    fancy>
+    <p>This card starts <em>fancy</em> and <strong>open</strong>!</p>
   </my-card>
 </body>
 </html>
